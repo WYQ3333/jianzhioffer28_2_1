@@ -4,31 +4,31 @@
 using namespace std;
 
 
-//class Solution {
-//public:
-//	vector<int> printMatrix(vector<vector<int> > matrix) {
-//		vector<int>res;
-//		int n = matrix.size();
-//		int m = matrix[0].size();
-//		int layer = (min(m, n) - 1) / 2 + 1;
-//		for (int i = 0; i<layer; i++){
-//			for (int j = i; j<m - i; j++){
-//				res.push_back(matrix[i][j]);
-//			}
-//			for (int k = i + 1; k<n - i; k++){
-//				res.push_back(matrix[k][m - i - 1]);
-//			}
-//			for (int p = m - i - 2; (p>i - 1) && (n - i - 1 != i); p--){
-//				res.push_back(matrix[n - i - 1][p]);
-//			}
-//			for (int q = n - i - 2; (q>i) && (m - i - 1 != i); q--){
-//				res.push_back(matrix[q][i]);
-//			}
-//		}
-//		return res;
-//
-//	}
-//};
+class Solution1 {
+public:
+	vector<int> printMatrix(vector<vector<int> > matrix) {
+		vector<int>res;
+		int n = matrix.size();
+		int m = matrix[0].size();
+		int layer = (min(m, n) - 1) / 2 + 1;
+		for (int i = 0; i<layer; i++){
+			for (int j = i; j<m - i; j++){
+				res.push_back(matrix[i][j]);
+			}
+			for (int k = i + 1; k<n - i; k++){
+				res.push_back(matrix[k][m - i - 1]);
+			}
+			for (int p = m - i - 2; (p>i - 1) && (n - i - 1 != i); p--){
+				res.push_back(matrix[n - i - 1][p]);
+			}
+			for (int q = n - i - 2; (q>i) && (m - i - 1 != i); q--){
+				res.push_back(matrix[q][i]);
+			}
+		}
+		return res;
+
+	}
+};
 
 class Solution {
 public:
