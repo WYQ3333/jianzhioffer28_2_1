@@ -4,31 +4,66 @@
 using namespace std;
 
 
+//class Solution {
+//public:
+//	vector<int> printMatrix(vector<vector<int> > matrix) {
+//		vector<int>res;
+//		int n = matrix.size();
+//		int m = matrix[0].size();
+//		int layer = (min(m, n) - 1) / 2 + 1;
+//		for (int i = 0; i<layer; i++){
+//			for (int j = i; j<m - i; j++){
+//				res.push_back(matrix[i][j]);
+//			}
+//			for (int k = i + 1; k<n - i; k++){
+//				res.push_back(matrix[k][m - i - 1]);
+//			}
+//			for (int p = m - i - 2; (p>i - 1) && (n - i - 1 != i); p--){
+//				res.push_back(matrix[n - i - 1][p]);
+//			}
+//			for (int q = n - i - 2; (q>i) && (m - i - 1 != i); q--){
+//				res.push_back(matrix[q][i]);
+//			}
+//		}
+//		return res;
+//
+//	}
+//};
+
 class Solution {
 public:
 	vector<int> printMatrix(vector<vector<int> > matrix) {
-		vector<int>res;
-		int n = matrix.size();
-		int m = matrix[0].size();
-		int layer = (min(m, n) - 1) / 2 + 1;
-		for (int i = 0; i<layer; i++){
-			for (int j = i; j<m - i; j++){
-				res.push_back(matrix[i][j]);
+		vector<int> ans;
+		int row = matrix.size();
+		int col = matrix[0].size();
+		int start = 0;
+		while (row>start * 2 && col>start * 2){
+			for (int i = start; i <= col - 1 - start; i++){
+				ans.push_back(matrix[start][i]);
 			}
-			for (int k = i + 1; k<n - i; k++){
-				res.push_back(matrix[k][m - i - 1]);
+			if (start<row - start - 1){
+				for (int i = start + 1; i <= row - 1 - start; i++){
+					ans.push_back(matrix[i][col - 1 - start]);
+				}
 			}
-			for (int p = m - i - 2; (p>i - 1) && (n - i - 1 != i); p--){
-				res.push_back(matrix[n - i - 1][p]);
+			if (start<col - start - 1 && start<row - start - 1){
+				for (int i = col - 2 - start; i >= start; i--){
+					ans.push_back(matrix[row - start - 1][i]);
+				}
 			}
-			for (int q = n - i - 2; (q>i) && (m - i - 1 != i); q--){
-				res.push_back(matrix[q][i]);
+			if (start<col - start - 1 && start<row - start - 2){
+				for (int i = row - 2 - start; i >= start + 1; i--){
+					ans.push_back(matrix[i][start]);
+				}
 			}
+			start++;
 		}
-		return res;
-
+		return ans;
 	}
 };
+
+
+
 //
 ///*解题思路：顺时针打印就是按圈数循环打印，一圈包含两行或者两列，在打印的时候会出现某一圈中只包含一行，要判断从左向右打印和从右向左打印的时候是否会出现重复打印，同样只包含一列时，要判断从上向下打印和从下向上打印的时候是否会出现重复打印的情况*/
 //class Solution {
